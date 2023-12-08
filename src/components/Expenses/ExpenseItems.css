@@ -1,0 +1,10 @@
+.expenses {
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(174, 221, 255));
+    /* background-image: linear-gradient(rgb(230, 243, 255), rgb(74, 131, 245)); */
+    /* background-color: rgb(200, 200, 200); */
+    color: #000;
+}
+.expenses__title {
+    margin: 0;
+    text-align: center;
+}

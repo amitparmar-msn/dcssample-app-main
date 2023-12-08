@@ -1,0 +1,38 @@
+.expenses_item {
+    background-color: #fff;
+    padding: 2px 5px;
+    min-height: 100px;
+}
+.expenses_item__date {
+    /* border: 1px solid; */
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 80px;
+    float: left;
+}
+.expenses_item__date .month {
+    font-size: 12px;
+}
+.expenses_item__date .day {
+    font-size: 30px;
+}
+.expenses_item__date .year {
+    font-size: 15px;
+}
+.expenses_item__title {
+    padding: 10px 5px;
+    font-size: 25px;
+    margin: auto;
+    font-weight: bold;
+    float: left;
+}
+
+.expenses_item__amount {
+    background-color: #1f0051;
+    color: #fff;
+    padding: 5px;
+    font-size: 18px;
+    text-align: center;
+    float: left;
+}
