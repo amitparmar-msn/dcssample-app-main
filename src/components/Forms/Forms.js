@@ -8,19 +8,54 @@ const Forms = () => {
     const handlerCourse = (event) => {
         setCourse(event.target.value);
     };
+    const [userList, setUserList] = useState([]);
     useEffect(() => {
         fetch('/user')
-            .then(response => response.json())
-            .then(data => console.log(data))
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(data)
+                setUserList(data);
+            })
             .catch(error => console.error(error));
-
-        return () => {
-
-        }
     }, [])
 
     return (
         <>
+
+            {userList.length > 0 ?
+                <ul>
+                    {
+                        userList.map(function (item, index) {
+                            return (
+                                <li key={item._id}>{item.name}
+                                    <button onClick={() => {
+                                        const requestOptions = {
+                                            method: 'DELETE',
+                                            headers: { 'Content-Type': 'application/json' },
+                                        };
+                                        fetch(`/user/${item._id}`, requestOptions)
+                                            .then(response => {
+                                                if (response.status === 200) {
+                                                    alert('Delete');
+                                                    window.location.href = window.location.href;
+                                                } else {
+                                                    alert('Processing error...')
+                                                }
+                                                console.log(response);
+                                            })
+                                            .catch(error => console.error(error));
+                                    }}>Delete</button>
+                                    <button onClick={() => {
+
+                                    }}>Edit</button>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+                : null}
             <Card>
                 <h2>Form</h2>
                 <form
@@ -32,8 +67,26 @@ const Forms = () => {
                                 `Welcome, ${fullname}. You have choosen ${course}!`
                             );
                         else setFullname('DCS')
+
+
+                        const requestOptions = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: fullname,
+                                course: course
+                            })
+                        };
+                        fetch('/user', requestOptions)
+                            .then(response => {
+                                return response.json()
+                            })
+                            .then(data => {
+                                console.log(data)
+                                setUserList(data);
+                            })
+                            .catch(error => console.error(error));
                         //alert("Please enter your name!");
-                        event.preventDefault();
                     }}
                 >
                     <label htmlFor="fullname">
